@@ -1,0 +1,106 @@
+.library {
+    background-color: #341642;
+    border-radius: 8px;
+    display: flex;
+    justify-content: start;
+    width: 290px;
+    padding: 10px 8px;
+    color: #f0b9f0;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 29px;
+    margin-left: 200px;
+    height: 120px;
+    flex-direction: column;
+    position: absolute;
+}
+
+.library .library__button {
+    margin-right: 10px;
+    color: #b3b3b3;
+    background-color: transparent;
+    border: 0px;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    padding: 10px 10px 5px;
+    display: flex;
+
+}
+
+.library .library__button img {
+    width: 20px;
+    height: 30px;
+    margin-right: 10px;
+    font-weight: 300;
+    padding-right: 1px;
+    margin-top: -5px;
+}
+
+.library__content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.library .library__content .plus_icon img{
+    width: 20px;
+    margin-right: 20px;
+    font-weight: 300;
+    padding-right: 30px;
+    margin-top: 11px;
+ }
+
+*.section-playlist {
+    background-color: #5c2a6b54;
+    align-items: flex-start;
+    border-radius: 8px;
+    gap: 20px;
+    width: 265px;
+    display: flex;
+    justify-content: space-between;
+    color: #b3b3b3;
+    font-weight: 600;
+    font-size: 13px;
+    margin:  8px 3px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-bottom: 25px;
+    height: 3px;
+     
+}
+
+.section-playlist .section-playlist__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-playlist__content .text {
+   padding-bottom: 14px;
+   color: #fff;
+}
+
+.section-playlist__content .title {
+   font-weight: 700;
+}
+
+ .section-playlist__content .section-playlist__button {
+    background-color: #ffffff;
+    color: #000;
+    border-radius: 9999px;
+    display: flex;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+    text-transform: none;
+    padding: 5px;
+    border: 0px;
+    width: 100px;
+    justify-content: center;
+    margin-top: 2px;
+    margin-left: -18px;
+}
+

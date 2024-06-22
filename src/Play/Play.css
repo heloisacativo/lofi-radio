@@ -1,0 +1,55 @@
+
+.background_container {
+    background-color: #341642;
+    position: absolute;
+    width: 977px;
+    height: 100px;
+    margin-left: 510px;
+    margin-top: 620px;
+    border-radius: 8px;
+}
+
+/* button play */
+.button_play {
+    position: absolute;
+    margin-left: -300px;
+    margin-top: 50px;
+}
+
+.button_play img {
+    width: 40px;
+    margin-left: 600px;
+    margin-top: -20px
+}
+
+
+
+/* button play left */
+
+.button_left {
+    position: absolute;
+    margin-left: 160px;
+    margin-top: 50px;
+}
+
+.button_left img {
+    width: 40px;
+    margin-left: 60px;
+    margin-top: -20px
+}
+
+
+/* button play right */
+
+.button_right {
+    position: absolute;
+    margin-left: 350px;
+    margin-top: 50px;
+}
+
+.button_right img {
+    width: 40px;
+    margin-left: 30px;
+    margin-top: -20px
+}
+
