@@ -1,24 +1,39 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import "../Play/Play.css";
 import play from "../assets/play-button.png";
-import leftPlay from "../assets/play-left.png";
-import rightPlay from "../assets/play-right.png";
-import "./Media-query.css";
+import pause from "../assets/play-left.png";
 const Play = () => {
+
+    const radioUrl = "https://www.youtube.com/embed/jfKfPfyJRdk?autoplay=1&enablejsapi=1&origin=https%3A%2F%2Flofimusicradio.com&widgetid=1";
+
+    const [isPlaying, setIsPlaying] = useState(false);
+
+    const handlePlayPause = () => {
+        setIsPlaying(!isPlaying);
+    };
+
     return (
-         <section className="background_container">
-            <div className="button_play">
-            <img src={play} alt="" />
-            
-            </div>
-            <div className="button_left">
-            <img src={leftPlay} alt="" />
-            
-            </div>
-            <div className="button_right">
-            <img src={rightPlay} alt="" />
-            
-            </div>
+         <section className="backgroundContainer">
+         <div className="buttonsContainer">
+            <img
+            className="buttonPlay"
+            src={isPlaying ? pause : play}
+            alt="" 
+            onClick={handlePlayPause}
+            />
+            {isPlaying && (
+                    <iframe
+                        id="youtube-player"
+                        width="0"
+                        height="0"
+                        src={radioUrl}
+                        allow="autoplay; encrypted-media"
+                        allowFullScreen
+                        title="Lofi Radio"
+                        style={{ visibility: 'hidden', position: 'absolute' }}
+                    ></iframe>
+                )}
+         </div>
          </section>
     )
 }
