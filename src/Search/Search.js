@@ -1,62 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { allSongs } from "../api/songs";
 import "../Search/Search.css";
 import search from "../assets/search.png";
+import { ExploreView } from "../components/ExploreView/ExploreView";
+import Header from "../Header/Header";
 
-function ArtistSearch() {
+function Search({ updateImages }) {
+    const [songs, setSongs] = useState([])
     const [searchTerm, setSearchTerm] = useState('');
-    const [results, setResults] = useState([]);
     const [showResult, setShowResult] = useState(false);
-  
+
+    useEffect(() => {
+      const fetchSongs = async () => {
+        const songsData = await allSongs();
+        setSongs(songsData);
+      }
+      fetchSongs();
+    }, [])
+
     const handleInputChange = (event) => {
       const inputValue = event.target.value.toLowerCase();
       setSearchTerm(inputValue);
       if (inputValue === '') {
         setShowResult(false);
       } else {
-        requestApi(inputValue);
+        setShowResult(true);
       }
     };
-  
-    const requestApi = (searchTerm) => {
-      fetch(`http://localhost:4000/artists?name_like=${searchTerm}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setResults(data);
-          setShowResult(true);
-        })
-        .catch((error) => {
-          console.error('Error fetching data:', error);
-        });
-    };
-  
-    const hidePlaylists = () => {
-      setShowResult(false);
-    };
 
-  
     return (
         <div>
-          <div className="header__search">
-            <img src={search} alt="" />
-            <input
-              id="header__search"
-              type="text"
-              value={searchTerm}
-              onChange={handleInputChange}
-            />
-            {showResult && (
-              <div>
-                {results.map((artist, index) => (
-                  <div key={index}>
-                    <img src={artist.urlImg} alt="Artist" />
-                    <p>{artist.name}</p>
-                  </div>
-                ))}
-              </div>
-            )}
+        <Header
+          imageSearch={search}
+          id="headerSearch"
+          type="text"
+          searchTerm={searchTerm}
+          onChange={handleInputChange}
+        />
+
+        {showResult && songs.length > 0 && (
+          <ExploreView
+            images={songs
+            .filter(song => song.title.toLowerCase().includes(searchTerm))
+            .map(song => ({
+              label: song.title
+            }))}
+          />
+        )}
           </div>
-        </div>
-    );
+        );
 }
 
-export default ArtistSearch;
+export default Search;
