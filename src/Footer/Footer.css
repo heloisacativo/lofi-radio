@@ -1,35 +1,21 @@
-.disclaimer-premium {
+.footerContainer {
     position: fixed;
-    height: 95px;
+    height: 80px;
     bottom: 0px;
     left: 10px;
     right: 10px;
     border-radius: 0.625rem;
-    background: linear-gradient(to right, #1b011d, #472144);
+    background: linear-gradient(to right, #372F2B, #100e0c);
     padding: 10px 40px;
     display: flex;
     justify-content: space-between;
-}
-.disclaimer-premium .text {
-   flex-shrink: 0;
-}
-.disclaimer-premium .disclaimer-premium__title {
-    color: #ffffff;
-    text-transform: uppercase;
-    font-weight: 400;
-    font-size: 12px;
-    margin-bottom: 10px;
+    align-items: center;
+    margin-bottom: 0.2rem;
 }
 
-.disclaimer-premium .disclaimer-premium__subtitle {
-    color: #ffffff;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.disclaimer-premium button {
-    background-color: #ffffff;
-    color: #000000;
+.footerContainer button {
+    background-color: #6E3920;
+    color: #8b604c;
     font-size: 16px;
     font-weight: bold;
     padding: 14px 30px;

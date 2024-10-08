@@ -1,23 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import "../Footer/Footer.css";
-import "./Media-query.css";
+import imageFooter from "../assets/lo-fi-footer-image.gif";
+import { ModalAdd } from "../components/ModalAdd/ModalAdd";
 
 
-const Footer = () => {
+const Footer = ({ addSong }) => {
+    const [isOpenModal, setIsOpenModal] = useState(false)
+
+    const isOpenModalTrue = () => {
+        setIsOpenModal(true)
+    }
+
+    const isCloseModalFalse = () => {
+        setIsOpenModal(false)
+    }
+
     return (
-        <footer className="disclaimer-premium">
+        <footer className="footerContainer">
         <div className="text">
-            <p className="disclaimer-premium__title">Testar o Premium de graça</p>
-            <p className="disclaimer-premium__subtitle">
-                Inscreva-se para curtir música ilimitada e podcasts só com alguns
-                anúncios. Não precisa de cartão de crédito.
-            </p>
+        <img src={imageFooter} alt="Imagem Footer"/>
         </div>
         <div className="button">
-            <button type="button">Inscreva-se grátis</button>
+            <button onClick={isOpenModalTrue} type="button">Adicione música</button>
         </div>
-    </footer>
+        {isOpenModal && (
+        <ModalAdd onClose={isCloseModalFalse} addSong={addSong}/>
     )
+    }
+    </footer>
+    
+)
 }
 
 
