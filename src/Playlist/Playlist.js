@@ -1,60 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../Playlist/Playlist.css";
-import card1 from "../assets/playlist/1.jpeg";
-import card2 from "../assets/playlist/2.jpeg";
-import card3 from "../assets/playlist/3.jpeg";
-import card4 from "../assets/playlist/4.jpeg";
 import background from "../assets/background.png";
-import "./Media-query.css";
+import { ExploreView } from "../components/ExploreView/ExploreView";
+import Search from "../Search/Search";
+import axios from "axios";
+
 
 const Playlist = () => {
-    return (     
-            <div className="playlist-container">
-                <img src={background} alt=""/>
-                <div id="result-playlists">
-                    <div className="playlist">
-                        {/* <h1 id="greeting"></h1> */}
-                        
-                        </div>  
-                    <div className="offer__scroll-container">
-                    <h2 className="session">Rádio Lo-fi</h2>
-                        <div className="offer__list">
-                            <section className="offer__list-item">
-                                
-                                <a href="" className="cards">
-                                    <div className="cards card1">
-                                    <img src={card1} alt="" />
-                                        <span>Estudar</span>
-                                    </div>
-                                </a>
-                                
-                                <a href="" className="cards">
-                                    <div className="cards card2">
-                                    <img src={card2} alt="" />
-                                        <span>Concentar</span>
-                                    </div>
-                                </a>
-                                
-                                <a href="" className="cards">
-                                    <div className="cards card3">
-                                    <img src={card3} alt="" />
-                                        <span>Relaxar</span>
-                                    </div>
-                                </a>
-                                
-                                <a href="" className="cards">
-                                    <div className="cards card4">
-                                    <img src={card4} alt="" />
-                                        <span>Aleatória</span>
-                                    </div>
-                                </a>
+    
+    const [songs, setSongs] = useState([]);
+    const [images, setImages] = useState([]);
 
-  
-                            </section>
-                        </div>
-                    </div>
+    const updateImages = (newImages) => {
+        setImages(newImages);
+    }
+
+    useEffect(() => {
+        const fetchSongs = async () => {
+            const response = await axios.get("http://localhost:3000/songs");
+            const songData = response.data.map(song => ({
+                id: song.song_id,
+                label: song.title,
+                audioUrl: song.url
+            }));
+            setSongs(songData);
+
+        }
+        fetchSongs();
+    }, [songs]);
+
+    const deleteSong = async (id) => {
+        await axios.delete(`http://localhost:3000/songs/${id}`)
+        setSongs((prevSongs) => prevSongs.filter(song => song.id !== id));
+
+    }
+
+    return (  
+    <>
+    <div className="backgroundImage">
+    <img src={background} alt=""/>   
+    </div>
+            <div className="playlistContainer">
+                <Search updateImages={updateImages}/>
+                <div id="result-playlists">
+                    <div className="playlist">     
+                        </div>  
+                <ExploreView 
+                images={songs}
+                deleteSong={deleteSong}
+                />
                 </div>
             </div>
+            
+    </>
     )
 }
 
