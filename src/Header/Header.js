@@ -3,23 +3,28 @@ import './Header.css';
 import smallRight from '../assets/small-right.png';
 import smallLeft from  '../assets/small-left.png';
 
-import "../Header/Media-query.css";
-import ArtistSearch from "../Search/Search";
 
-const Header = () => {
-    return (
-        
-        <nav className="header__navigation">
+const Header = ({imageSearch, searchTerm, onChange, ...props}) => {
+    return (   
+        <nav className="headerNavigation">
                 <div className="navigation">
-                    <button className="arrow-left">
+                    <button className="arrowLeft">
                         <img src={smallLeft} alt="" />
                     </button>
-                    <button className="arrow-right">
+                    <button className="arrowRight">
                     <img src={smallRight} alt="" />
                     </button>                  
                 </div>
-
-                <div className="header__login">
+                <div className="headerSearch">
+                <img src={imageSearch} alt="" />
+                <input
+                id={props.id}
+                type={props.type}
+                value={searchTerm}
+                onChange={onChange}
+                />
+                </div>
+                <div className="headerLogin">
                     <button className="login">Entrar</button>
                 </div>
             </nav>
